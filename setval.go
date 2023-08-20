@@ -1,7 +1,7 @@
 package dst
 
 import (
-	"errors"
+	"fmt"
 	"net/url"
 	"os"
 	"strconv"
@@ -12,7 +12,7 @@ import (
 func SetContent(dst *[]byte, value string) error {
 	tmp, err := os.ReadFile(value)
 	if err != nil {
-		return err
+		return fmt.Errorf("SetContent: %w", err)
 	}
 	*dst = tmp
 	return nil
@@ -22,7 +22,7 @@ func SetContent(dst *[]byte, value string) error {
 func SetFloat(dst *float64, value string) error {
 	tmp, err := strconv.ParseFloat(value, 64)
 	if err != nil {
-		return errors.Unwrap(err)
+		return fmt.Errorf("SetFloat: %w", err)
 	}
 	*dst = tmp
 	return nil
@@ -32,7 +32,7 @@ func SetFloat(dst *float64, value string) error {
 func SetInt(dst *int, value string) error {
 	tmp, err := strconv.Atoi(value)
 	if err != nil {
-		return errors.Unwrap(err)
+		return fmt.Errorf("SetInt: %w", err)
 	}
 	*dst = tmp
 	return nil
@@ -42,7 +42,7 @@ func SetInt(dst *int, value string) error {
 func SetURL(dst *url.URL, value string) error {
 	tmp, err := url.Parse(value)
 	if err != nil {
-		return err
+		return fmt.Errorf("SetURL: %w", err)
 	}
 	*dst = *tmp
 	return nil
@@ -52,7 +52,7 @@ func SetURL(dst *url.URL, value string) error {
 func SetDuration(dst *time.Duration, value string) error {
 	tmp, err := time.ParseDuration(value)
 	if err != nil {
-		return err
+		return fmt.Errorf("SetDuration: %w", err)
 	}
 	*dst = tmp
 	return nil
@@ -62,7 +62,7 @@ func SetDuration(dst *time.Duration, value string) error {
 func SetUint32(dst *uint32, value string) error {
 	tmp, err := strconv.ParseUint(value, 10, 32)
 	if err != nil {
-		return errors.Unwrap(err)
+		return fmt.Errorf("SetUint32: %w", err)
 	}
 	*dst = uint32(tmp)
 	return nil
@@ -77,7 +77,7 @@ func SetBool(dst *bool, value string) error {
 	}
 	tmp, err := strconv.ParseBool(value)
 	if err != nil {
-		return errors.Unwrap(err)
+		return fmt.Errorf("SetBool: %w", err)
 	}
 	*dst = tmp
 	return nil

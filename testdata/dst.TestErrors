@@ -1,0 +1,7 @@
+SetContent: open badfile.x: no such file or directory
+SetFloat: strconv.ParseFloat: parsing "v": invalid syntax
+SetInt: strconv.Atoi: parsing "v": invalid syntax
+SetURL: parse "htt p://": first path segment in URL cannot contain colon
+SetDuration: time: invalid duration "v"
+SetUint32: strconv.ParseUint: parsing "v": invalid syntax
+SetBool: strconv.ParseBool: parsing "NO": invalid syntax
