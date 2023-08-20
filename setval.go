@@ -3,9 +3,20 @@ package dst
 import (
 	"errors"
 	"net/url"
+	"os"
 	"strconv"
 	"time"
 )
+
+// SetContent updates dst with the file content of value.
+func SetContent(dst *[]byte, value string) error {
+	tmp, err := os.ReadFile(value)
+	if err != nil {
+		return err
+	}
+	*dst = tmp
+	return nil
+}
 
 // SetFloat updates dst if the value is a valid float64
 func SetFloat(dst *float64, value string) error {

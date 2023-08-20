@@ -2,9 +2,25 @@ package dst
 
 import (
 	"net/url"
+	"os"
+	"strings"
 	"testing"
 	"time"
 )
+
+func TestSetContent(t *testing.T) {
+	var dst []byte
+	if err := SetContent(&dst, "oups"); err == nil {
+		t.Error("expected error")
+	}
+	if err := SetContent(&dst, "README"); err != nil {
+		t.Error("unexpected", err)
+	}
+	if !strings.Contains(string(dst), "Package") {
+		os.Stderr.Write(dst)
+		t.Error("unexpected file content")
+	}
+}
 
 func TestSetFloat(t *testing.T) {
 	var dst float64
